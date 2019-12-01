@@ -45,7 +45,7 @@ def installScript(scriptName):
     with open(cfg.scriptsFolder+foundName, 'rt') as openedFile:
         for line in openedFile:
             if(line.startswith(cfg.cronRegex)):
-                cronText += line[len(cfg.cronRegex):len(line)
+                cronText += line[len(cfg.cronRegex)+1:len(line)+1
                                  ].replace(cfg.scriptRegex, cfg.scriptsFolder+foundName)
 
     # write new file
@@ -90,7 +90,16 @@ def getInstalledScripts():
     installedFiles = [f for f in os.listdir(
         cfg.cronPath) if os.path.isfile(os.path.join(cfg.cronPath, f))]
 
-    return installedFiles
+    availableFiles = getAvailableScripts()
+    matchedScripts = list()
+
+    for installedFile in installedFiles:
+        for availableFile in availableFiles:
+            if(availableFile.startswith(installedFile)):
+                matchedScripts.append(installedFile)
+                break
+
+    return matchedScripts
 
 
 def getAvailableScripts():
@@ -109,3 +118,4 @@ def getAvailableScripts():
 
 if __name__ == '__main__':
     main()
+

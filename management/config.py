@@ -1,9 +1,9 @@
 import os
 
 # GLOBAL CONFIG #
-projectHome = "$SWM_PATH"
+projectHome = os.environ["SWM_PATH"]
 scriptsFolder = projectHome+"scripts/"
-cronPath = projectHome+"testing-cron-d/"  # cronPath = "/etc/cron.d/"
+cronPath = "/etc/init.d/"  # cronPath = "/etc/cron.d/"
 cronRegex = "# CRON #"
 scriptRegex = "SCRIPTPATH"
 
