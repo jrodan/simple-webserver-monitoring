@@ -1,6 +1,8 @@
-# CRON # */10 * * * * / bin/bash / SCRIPTPATH
+#!/bin/bash
+source $HOME/.bash_profile
 
-#!/bin/sh
+# CRON # */10 * * * * root bin/bash SCRIPTPATH
+
 df -Ph | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5,$1 }' | while read output;
 do
   echo $output

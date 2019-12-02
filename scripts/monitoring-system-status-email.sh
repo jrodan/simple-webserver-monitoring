@@ -1,7 +1,8 @@
 #!/bin/bash
+source $HOME/.bash_profile
 
-# CRON # 10 2 2-31 * * / SCRIPTPATH
-# CRON # 10 2 * * * / SCRIPTPATH
+# CRON # 10 2 2-31 * * root SCRIPTPATH
+# CRON # 10 2 * * * root SCRIPTPATH
 
 ##
 ## script to send server status emails once a day

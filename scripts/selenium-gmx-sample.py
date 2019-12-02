@@ -2,7 +2,7 @@ import os
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-# CRON # 0 22 * * * / usr/bin/python / SCRIPTPATH
+# CRON # 0 22 * * * root source $HOME/.bash_profile; usr/bin/python SCRIPTPATH
 
 #
 # init

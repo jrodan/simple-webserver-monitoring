@@ -1,8 +1,10 @@
 #!/bin/bash
+source $HOME/.bash_profile
+
 # incremental backup script
 
-# CRON # 10 1 1 * * / SCRIPTPATH complete
-# CRON # 10 1 2-31 * * / SCRIPTPATH
+# CRON # 10 1 1 * * root SCRIPTPATH complete
+# CRON # 10 1 2-31 * * root SCRIPTPATH
 
 ##
 ## init folders

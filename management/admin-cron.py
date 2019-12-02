@@ -56,7 +56,7 @@ def installScript(scriptName):
 
     # set execute permission for script and cronfile
     os.chmod(cfg.scriptsFolder+foundName, 0o744)
-    os.chmod(cfg.cronPath+cronFileName, 0o744)
+    os.chmod(cfg.cronPath+cronFileName, 0o644)
 
     print("script "+scriptName+" was successfully installed")
 

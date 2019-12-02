@@ -1,4 +1,5 @@
 #!/bin/bash
+source $HOME/.bash_profile
 
 # CRON # */5 * * * * root SCRIPTPATH
 # CRON # */10 * * * * root SCRIPTPATH
