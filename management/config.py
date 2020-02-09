@@ -6,6 +6,7 @@ scriptsFolder = projectHome+"scripts/"
 cronPath = "/etc/cron.d/"
 cronRegex = "# CRON #"
 scriptRegex = "SCRIPTPATH"
+logPath = "/var/logs/simple-webserver-monitoring/"
 
 # SCRIPT CONFIG #
 
