@@ -20,7 +20,7 @@ restic backup /opt
 dbnames=$(mysql -u$SWM_DB_USER -p$SWM_DB_PASSWORD -e 'show databases')
 while read dbname; do
     if [ "$dbname" != "Database" ] && [ "$dbname" != "performance_schema" ] && [ "$dbname" != "information_schema" ]; then
-        mysqldump -u$SWM_DB_USER -p$SWM_DB_PASSWORD --events --ignore-table=mysql.event --complete-insert "$dbname" > restic backup --stdin --stdin-filename "$dbname-$DATE".sql;
+        mysqldump -u$SWM_DB_USER -p$SWM_DB_PASSWORD --events --ignore-table=mysql.event --complete-insert "$dbname" | restic backup --stdin --stdin-filename "$dbname-$DATE".sql;
     fi
 done <<< "$dbnames"
 
