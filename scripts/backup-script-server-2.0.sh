@@ -14,8 +14,8 @@ echo -e "\n`date` - Starting backup...\n"
 restic backup /home --exclude .cache --exclude .local
 restic backup /var/mail --exclude *.log
 restic backup /var/customers --exclude logs
-restic backup /var/www 
-restic backup /opt
+restic backup /var/www --exclude *.log
+restic backup /opt --exclude *.log
 
 dbnames=$(mysql -u$SWM_DB_USER -p$SWM_DB_PASSWORD -e 'show databases')
 while read dbname; do

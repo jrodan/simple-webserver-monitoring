@@ -32,33 +32,37 @@ def main():
 def installScript(scriptName):
 
     availableFiles = getAvailableScripts()
-    foundName = ""
+    foundNames = list()
 
     # get script name
     for fileName in availableFiles:
-        if(fileName.startswith(scriptName)):
-            foundName = fileName
+        # check if all files should be installed
+        if(scriptName == "ALL"):
+            foundNames.append(fileName)
+        elif(fileName.startswith(scriptName)):
+            foundNames.append(fileName)
             break
 
-    # extract cron details
-    cronText = ""
-    with open(cfg.scriptsFolder+foundName, 'rt') as openedFile:
-        for line in openedFile:
-            if(line.startswith(cfg.cronRegex)):
-                cronText += line[len(cfg.cronRegex)+1:len(line)+1
-                                 ].replace(cfg.scriptRegex, cfg.scriptsFolder+foundName)
+    for foundName in foundNames:
+        # extract cron details
+        cronText = ""
+        with open(cfg.scriptsFolder+foundName, 'rt') as openedFile:
+            for line in openedFile:
+                if(line.startswith(cfg.cronRegex)):
+                    cronText += line[len(cfg.cronRegex)+1:len(line)+1
+                                     ].replace(cfg.scriptRegex, cfg.scriptsFolder+foundName)
 
-    # write new file
-    cronFileName = foundName[0:foundName.find(".")]
-    f = open(cfg.cronPath+cronFileName, 'w')
-    f.write(cronText)
-    f.close()
+        # write new file
+        cronFileName = foundName[0:foundName.find(".")]
+        f = open(cfg.cronPath+cronFileName, 'w')
+        f.write(cronText)
+        f.close()
 
-    # set execute permission for script and cronfile
-    os.chmod(cfg.scriptsFolder+foundName, 0o744)
-    os.chmod(cfg.cronPath+cronFileName, 0o644)
+        # set execute permission for script and cronfile
+        os.chmod(cfg.scriptsFolder+foundName, 0o744)
+        os.chmod(cfg.cronPath+cronFileName, 0o644)
 
-    print("script "+scriptName+" was successfully installed")
+        print("script "+scriptName+" was successfully installed")
 
 
 def uninstallScript(scriptName):
@@ -118,4 +122,3 @@ def getAvailableScripts():
 
 if __name__ == '__main__':
     main()
-

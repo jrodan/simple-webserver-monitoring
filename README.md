@@ -1,6 +1,11 @@
 # Setup
-run the setup script (pip dependencies, ...)
-`sudo /opt/simple-webserver-monitoring/management/setup.sh`
+run the setup script 
+`sudo /opt/simple-webserver-monitoring/install.sh`
+configure all by your scripts required environment variables.
+
+# Intall all scripts
+install all scripts
+`python3 /opt/simple-webserver-monitoring/management/admin-cron.sh install ALL`
 configure all by your scripts required environment variables.
 
 # Install a script 
