@@ -1,5 +1,6 @@
 #!/bin/bash
 source $HOME/.bash_profile
+source $HOME/.bashrc
 
 # incremental backup script
 
@@ -17,12 +18,16 @@ restic backup /var/customers --exclude logs
 restic backup /var/www --exclude *.log
 restic backup /opt --exclude *.log
 
+mkdir -p $SWM_PATH/sql
+
 dbnames=$(mysql -u$SWM_DB_USER -p$SWM_DB_PASSWORD -e 'show databases')
 while read dbname; do
     if [ "$dbname" != "Database" ] && [ "$dbname" != "performance_schema" ] && [ "$dbname" != "information_schema" ]; then
-        mysqldump -u$SWM_DB_USER -p$SWM_DB_PASSWORD --events --ignore-table=mysql.event --complete-insert "$dbname" | restic backup --stdin --stdin-filename "$dbname-$DATE".sql;
+        mysqldump -u$SWM_DB_USER -p$SWM_DB_PASSWORD --events --ignore-table=mysql.event --complete-insert "$dbname" > $SWM_PATH/sql/$dbname.sql;
     fi
 done <<< "$dbnames"
+
+restic backup $SWM_PATH/sql
 
 echo -e "\n`date` - Running forget and prune...\n"
 
