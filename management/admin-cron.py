@@ -62,7 +62,7 @@ def installScript(scriptName):
         os.chmod(cfg.scriptsFolder+foundName, 0o744)
         os.chmod(cfg.cronPath+cronFileName, 0o644)
 
-        print("script "+scriptName+" was successfully installed")
+        print("script "+cronFileName+" was successfully installed")
 
 
 def uninstallScript(scriptName):

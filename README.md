@@ -5,7 +5,7 @@ configure all by your scripts required environment variables.
 
 # Intall all scripts
 install all scripts
-`python3 /opt/simple-webserver-monitoring/management/admin-cron.sh install ALL`
+`python3 /opt/simple-webserver-monitoring/management/admin-cron.py install ALL`
 configure all by your scripts required environment variables.
 
 # Install a script 
